@@ -1,6 +1,15 @@
 {
-    "forma_de_pagamento": "payfast",
-    "valor": "10.87",
-    "moeda": "BRL",
-    "descricao": "descrição do pagamento"
+    "pagamento": {
+        "forma_de_pagamento": "cartao",
+        "valor": "10.87",
+        "moeda": "BRL",
+        "descricao": "descrição do pagamento"
+    },
+    "cartao": {
+        "bandeira": "visa",
+        "numero": 1234123412341234,
+        "mes_de_expiracao": 12,
+        "ano_de_expiracao": 2016,
+        "cvv": 123
+    }
 }

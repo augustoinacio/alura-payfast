@@ -1,0 +1,10 @@
+{
+    "jse_shortmsg": "",
+    "jse_info": {},
+    "message": "[{\"param\":\"numero\",\"msg\":\"Número é obrigatório e deve ter 16 caracteres.\",\"value\":123414}]",
+    "body": [{
+        "param": "numero",
+        "msg": "Número é obrigatório e deve ter 16 caracteres.",
+        "value": 123414
+    }]
+}
