@@ -9,6 +9,36 @@ module.exports = function (app) {
         res.send('OK.');
     });
 
+    app.get('/pagamentos/pagamento/:id', function (req, res) {
+        var id = req.params.id;
+        var memcachedClient = app.servicos.memcachedClient();
+        memcachedClient.get('pagamento-' + id, function (erro, retorno) {
+            if (erro || !retorno) {
+                console.log('MISS - chave nao encontrada');                
+                var connection = app.persistencia.connectionFactory();
+                var pagamentoDao = new app.persistencia.PagamentoDao(connection);
+                pagamentoDao.buscaPorId(id, function (erro, resultado) {
+                    console.log(resultado);
+                    if (erro) {
+                        console.log('Erro no banco de dados ' + erro);
+                        res.status(500).send(erro);
+                    }
+                    if (!resultado) {
+                        console.log('Retorno da consulta vazio!');
+                        res.status(503).send(erro);
+                    } else {
+                        console.log('pagamento retornado : ' + JSON.stringify(resultado));
+                        res.json(resultado);
+                        return;
+                    }
+                })
+            } else {
+                console.log('HIT - valor: ' + JSON.stringify(retorno));
+                res.json(retorno);
+            }
+        });
+    });
+
     app.delete('/pagamentos/pagamento/:id', function (req, res) {
         var id = req.params.id;
         var pagamento = {};
@@ -64,6 +94,10 @@ module.exports = function (app) {
                 res.status(500).send(erro);
             } else {
                 pagamento.id = resultado.insertId;
+                var cache = app.servicos.memcachedClient()
+                cache.set('pagamento-'+pagamento.id, resultado, 100000, function(err){
+                    console.log('nova chave: pagamento-' + pagamento.id);
+                });
                 if (pagamento.forma_de_pagamento == 'cartao') {
                     console.log('\nForma de pagamento : ' + pagamento.forma_de_pagamento);
                     var cartao = req.body["cartao"];
@@ -87,6 +121,10 @@ module.exports = function (app) {
                                 href: "http://localhost:3000/pagamentos/pagamento/" + pagamento.id,
                                 rel: "cancelar",
                                 method: "DELETE"
+                            }, {
+                                href: "http://localhost:3000/pagamentos/pagamento/" + pagamento.id,
+                                rel: "consultar",
+                                method: "GET" 
                             }]
                         }
                         res.status(201).json(response);

@@ -4,8 +4,8 @@ module.exports = function (app) {
         console.log('recebendo imagem');
         var filename = req.headers.filename;
         req.pipe(fs.createWriteStream('files/' + filename))
-        .on('finish', function(){
-            res.status(201).send('upload/imagem/' + filename);
-        });
+            .on('finish', function () {
+                res.status(201).send('upload/imagem/' + filename);
+            });
     });
 }
