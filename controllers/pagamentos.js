@@ -1,3 +1,4 @@
+var logger = require('../servicos/logger');
 module.exports = function (app) {
 
     const PAGAMENTO_CRIADO = "CRIADO";
@@ -11,6 +12,7 @@ module.exports = function (app) {
 
     app.get('/pagamentos/pagamento/:id', function (req, res) {
         var id = req.params.id;
+        logger.info('consultando pagamento: '+ id);
         var memcachedClient = app.servicos.memcachedClient();
         memcachedClient.get('pagamento-' + id, function (erro, retorno) {
             if (erro || !retorno) {
@@ -144,6 +146,7 @@ module.exports = function (app) {
                             method: "DELETE"
                         }]
                     }
+                    logger.info('Response de inclusão de pagamento com sucesso: '+ pagamento);
                     res.status(201).json(response);
                 }
             }

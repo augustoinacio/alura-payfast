@@ -19,9 +19,11 @@
     "express": "^4.16.2",
     "express-validator": "^2.12.1",
     "memcached": "^2.2.2",
+    "morgan": "^1.7.0",
     "mysql": "^2.15.0",
     "restify": "^6.3.4",
     "restify-clients": "^1.5.2",
-    "soap": "^0.23.0"
+    "soap": "^0.23.0",
+    "winston": "^2.4.0"
   }
 }

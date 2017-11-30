@@ -1,0 +1,7 @@
+{"level":"info","message":"::ffff:127.0.0.1 - - [30/Nov/2017:16:11:14 +0000] \"POST /pagamentos/pagamento HTTP/1.1\" 201 576\n","timestamp":"2017-11-30T16:11:14.577Z"}
+{"level":"info","message":"consultando pagamento: 11","timestamp":"2017-11-30T16:11:20.784Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [30/Nov/2017:16:11:20 +0000] \"GET /pagamentos/pagamento/11 HTTP/1.1\" 200 128\n","timestamp":"2017-11-30T16:11:20.795Z"}
+{"level":"info","message":"consultando pagamento: 11","timestamp":"2017-11-30T16:20:17.723Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [30/Nov/2017:16:20:17 +0000] \"GET /pagamentos/pagamento/11 HTTP/1.1\" 200 128\n","timestamp":"2017-11-30T16:20:17.755Z"}
+{"level":"info","message":"consultando pagamento: 11","timestamp":"2017-11-30T16:21:57.128Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [30/Nov/2017:16:21:57 +0000] \"GET /pagamentos/pagamento/11 HTTP/1.1\" 200 128\n","timestamp":"2017-11-30T16:21:57.141Z"}
